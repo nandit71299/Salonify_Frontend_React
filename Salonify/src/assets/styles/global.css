@@ -1,0 +1,55 @@
+body {
+  font-family: "Metropolis", sans-serif;
+  font-weight: 400;
+}
+
+.custom-font-bold {
+  font-weight: 700;
+}
+
+.custom-font-bolder {
+  font-weight: 900;
+}
+
+.custom-font-smaller {
+  font-size: 0.5rem;
+}
+.custom-font-small {
+  font-size: 0.6rem;
+}
+
+.custom-font-normal {
+  font-size: 0.8rem;
+}
+
+.custom-font-large {
+  font-size: 1rem;
+}
+
+.custom-font-larger {
+  font-size: 1.2rem;
+}
+
+.custom-heading-5 {
+  font-size: 0.6rem;
+}
+.custom-heading-4 {
+  font-size: 0.7rem;
+}
+.custom-heading-3 {
+  font-size: 0.8rem;
+}
+.custom-heading-2 {
+  font-size: 0.9rem;
+}
+.custom-heading-1 {
+  font-size: 1rem;
+}
+
+.custom-text-gray {
+  color: #b3b3b3;
+}
+
+.custom-text-blue {
+  color: #3888ff;
+}
