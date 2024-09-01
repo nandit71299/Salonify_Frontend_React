@@ -1,3 +1,7 @@
+#root {
+  --boxes-border: #71849e84;
+}
+
 body {
   font-family: "Metropolis", sans-serif;
   font-weight: 400;

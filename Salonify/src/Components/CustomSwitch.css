@@ -1,0 +1,44 @@
+/* CustomSwitch.css */
+
+.custom-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px; /* Adjust size as needed */
+  height: 28px; /* Adjust size as needed */
+}
+
+.custom-switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.custom-switch-label {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 50px;
+  transition: background-color 0.3s;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  width: 24px; /* Slider size */
+  height: 24px; /* Slider size */
+  top: 2px; /* Vertical alignment */
+  left: 2px; /* Horizontal alignment */
+}
+
+.custom-switch-input:checked + .custom-switch-label {
+  background-color: #007aff; /* iOS blue color */
+}
+
+.custom-switch-input:checked + .custom-switch-label .custom-switch-slider {
+  transform: translateX(22px); /* Adjust based on the width of the switch */
+}

@@ -1,8 +1,12 @@
 .register-footer-container {
-  margin-bottom: 20px;
+  margin-top: auto; /* Push the footer to the bottom of the page */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+  backdrop-filter: blur(10px);
+  /* No need for position: fixed; to keep it at the bottom of the page */
+  position: fixed;
+  bottom: 0px;
 }

@@ -2,16 +2,16 @@ import React from "react";
 
 import Header from "../Components/Header";
 import CustomTextInput from "../Components/CustomTextInput";
-import NavigateBack from "../Components/NavigateBack";
-import "./Register.css";
+
+import "./RegisterPersonalDetails.css";
 import RegisterFooter from "../Components/RegisterFooter";
 
-export default function Register() {
+export default function RegisterPersonalDetails() {
   return (
     <div className="personal-details-page-container">
       <Header
-        backButton={<NavigateBack />}
-        heading="Let's get you started"
+        backButton={true}
+        heading="Let's Get You Started"
         subText="Create a Salonify account to continue"
         // rightOption="Done"
       />
@@ -36,7 +36,11 @@ export default function Register() {
         </div>
       </div>
       <div>
-        <RegisterFooter buttonText="Next" path={"/register2"} />
+        <RegisterFooter
+          buttonText="Next"
+          path={"/registerbusinessdetails"}
+          footerText="By signing up you agree to Salonify Terms of Use, to get email and update, and you acknowledge that you have read our Privacy Policy "
+        />
       </div>
     </div>
   );

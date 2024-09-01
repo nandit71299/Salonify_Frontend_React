@@ -5,8 +5,8 @@ import "./assets/styles/global.css";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import "./assets/fonts/Metropolis-Black.otf";
-import Register from "./Pages/Register";
-import Register2 from "./Pages/Register2";
+import RegisterPersonalDetails from "./Pages/RegisterPersonalDetails";
+import RegisterBusinessDetails from "./Pages/RegisterBusinessDetails";
 
 const App = () => {
   return (
@@ -16,8 +16,11 @@ const App = () => {
           <div className="app">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/register2" element={<Register2 />} />
+              <Route path="/register" element={<RegisterPersonalDetails />} />
+              <Route
+                path="/registerbusinessdetails"
+                element={<RegisterBusinessDetails />}
+              />
             </Routes>
           </div>
         </Router>
