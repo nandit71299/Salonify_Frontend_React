@@ -135,7 +135,7 @@ export default function RegisterBusinessDetails() {
           )}
         </div>
       </div>
-      <RegisterFooter buttonText="Next" path={"/registerbusinessdetails2"} />
+      <RegisterFooter buttonText="Next" path={"/registersetpassword"} />
     </div>
   );
 }

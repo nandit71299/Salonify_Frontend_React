@@ -5,8 +5,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  backdrop-filter: blur(10px);
-  /* No need for position: fixed; to keep it at the bottom of the page */
+  backdrop-filter: blur(1px);
   position: fixed;
   bottom: 0px;
 }

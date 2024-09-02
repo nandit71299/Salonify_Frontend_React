@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./assets/styles/global.css";
 import Home from "./Pages/Home";
-import About from "./Pages/About";
 import "./assets/fonts/Metropolis-Black.otf";
 import RegisterPersonalDetails from "./Pages/RegisterPersonalDetails";
 import RegisterBusinessDetails from "./Pages/RegisterBusinessDetails";
+import RegisterSetPassword from "./Pages/RegisterSetPassword";
+import RegisterOtp from "./Pages/RegisterOtp";
+import LoginPage from "./Pages/LoginPage";
 
 const App = () => {
   return (
@@ -21,6 +23,12 @@ const App = () => {
                 path="/registerbusinessdetails"
                 element={<RegisterBusinessDetails />}
               />
+              <Route
+                path="/registersetpassword"
+                element={<RegisterSetPassword />}
+              />
+              <Route path="/registerotp" element={<RegisterOtp />} />
+              <Route path="/login" element={<LoginPage />} />
             </Routes>
           </div>
         </Router>
