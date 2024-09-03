@@ -19,9 +19,11 @@ const Home = () => {
         </div>
       </div>
       <div className="button-container">
-        <button className="login btn btn-dark rounded-5 custom-font-smaller">
-          I already have Salonify account
-        </button>
+        <Link to="/login">
+          <button className="login btn btn-dark rounded-5 custom-font-smaller">
+            I already have Salonify account
+          </button>
+        </Link>
         <Link to="/register">
           <button className="register btn btn-white border border-black rounded-5 custom-font-smaller">
             Register

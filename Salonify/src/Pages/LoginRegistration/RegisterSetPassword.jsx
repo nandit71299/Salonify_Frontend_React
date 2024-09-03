@@ -1,9 +1,9 @@
 import React from "react";
 
 import "./RegisterSetPassword.css";
-import Header from "../Components/Header";
-import RegisterFooter from "../Components/RegisterFooter";
-import CustomTextInput from "../Components/CustomTextInput";
+import Header from "../../Components/Header";
+import RegisterFooter from "../../Components/RegisterFooter";
+import CustomTextInput from "../../Components/CustomTextInput";
 
 export default function RegisterSetPassword() {
   return (

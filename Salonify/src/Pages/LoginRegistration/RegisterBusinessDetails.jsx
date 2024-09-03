@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 import "./RegisterBusinessDetails.css";
-import CustomTextInput from "../Components/CustomTextInput";
-import RegisterFooter from "../Components/RegisterFooter";
-import CustomSwitch from "../Components/CustomFormSwitch";
+import CustomTextInput from "../../Components/CustomTextInput";
+import RegisterFooter from "../../Components/RegisterFooter";
+import CustomSwitch from "../../Components/CustomFormSwitch";
 
 export default function RegisterBusinessDetails() {
   const [uploaderMessage, setUploaderMessage] = useState("+");

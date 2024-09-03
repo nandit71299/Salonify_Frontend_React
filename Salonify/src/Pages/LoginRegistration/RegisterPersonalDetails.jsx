@@ -1,10 +1,10 @@
 import React from "react";
 
-import Header from "../Components/Header";
-import CustomTextInput from "../Components/CustomTextInput";
+import Header from "../../Components/Header";
+import CustomTextInput from "../../Components/CustomTextInput";
 
 import "./RegisterPersonalDetails.css";
-import RegisterFooter from "../Components/RegisterFooter";
+import RegisterFooter from "../../Components/RegisterFooter";
 
 export default function RegisterPersonalDetails() {
   return (

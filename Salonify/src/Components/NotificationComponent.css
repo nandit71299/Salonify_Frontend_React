@@ -1,0 +1,53 @@
+/* NotificationComponent.css */
+
+.notification {
+  position: fixed;
+  top: 20;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50; /* Green background */
+  color: white;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Optional: shadow for better visibility */
+  z-index: 1000; /* Ensure it's on top */
+  font-size: 1rem;
+  transition: opacity 0.5s ease;
+  animation-duration: 0.5s;
+  animation-fill-mode: both; /* Ensure animation persists */
+  width: 90vw;
+}
+
+/* Keyframe for slide-in */
+@keyframes slideIn {
+  from {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Keyframe for slide-out */
+@keyframes slideOut {
+  from {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* Apply slide-in animation */
+.notification.slide-in {
+  animation-name: slideIn;
+}
+
+/* Apply slide-out animation */
+.notification.slide-out {
+  animation-name: slideOut;
+}
