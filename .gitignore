@@ -1,0 +1,32 @@
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Log files
+*.log
+
+# IDE/editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Other files
+*.tgz
+*.zip
+*.rar
+*.tar
+*.7z
