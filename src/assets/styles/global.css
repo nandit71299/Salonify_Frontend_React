@@ -22,8 +22,13 @@ body {
   font-size: 0.6rem;
 }
 
+.custom-font-medium {
+  font-size: 0.7rem;
+}
+
 .custom-font-normal {
   font-size: 0.8rem;
+  font-weight: normal;
 }
 
 .custom-font-large {
@@ -56,4 +61,24 @@ body {
 
 .custom-text-blue {
   color: #3888ff;
+}
+
+.custom-bg-blue {
+  background-color: #3888ff;
+}
+
+.custom-bg-light-blue {
+  background-color: #80b2ff;
+}
+
+.custom-bg-gray {
+  background-color: #80b3ff41;
+}
+
+.custom-font-semi-bold {
+  font-weight: 500;
+}
+
+.custom-card-background {
+  background-color: #f4f6ff;
 }

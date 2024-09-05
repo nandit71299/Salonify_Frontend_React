@@ -7,7 +7,8 @@ function OtpInput({ length, onComplete, disabled }) {
 
   const handleOtpInputChange = (e, index) => {
     const value = e.target.value;
-    if (/^[0-9]$/.test(value) || value === "") {
+    if (/^\d*$/.test(value)) {
+      // Ensure value is a number or empty
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
@@ -41,6 +42,8 @@ function OtpInput({ length, onComplete, disabled }) {
           maxLength={1}
           onChange={(e) => handleOtpInputChange(e, index)}
           disabled={disabled}
+          pattern="\d*" // Enforce numeric input (HTML5 pattern attribute)
+          inputMode="numeric" // Improve numeric keyboard on mobile
         />
       ))}
     </div>
