@@ -88,28 +88,32 @@ function MostBookedCard(props) {
         </button>
       </div>
 
-      {sampleData.map((data) => {
-        return (
-          <div
-            key={data.id}
-            className="container pt-2 d-flex gap-2 justify-content-center align-items-center flex-nowrap"
-          >
-            <div className="custom-bg-blue m-0 p-0   rounded-5 text-white">
-              <p className="m-0 py-2 px-3">{data.id}</p>
-            </div>
-            <div className="d-flex flex-column flex-grow-1">
-              <div className="custom-font-normal">{data.serviceName}</div>
-              <div className="custom-font-small custom-text-gray">
-                {data.apponintmentCounts} Appointments
+      <div className="py-2 pb-3 d-flex flex-column gap-2">
+        {sampleData.map((data) => {
+          return (
+            <div
+              key={data.id}
+              className="container d-flex gap-2 justify-content-center align-items-center flex-nowrap"
+            >
+              <div className="custom-bg-blue m-0 p-0   rounded-5 text-white">
+                <p className="m-0 py-2 px-3">{data.id}</p>
+              </div>
+              <div className="d-flex flex-column flex-grow-1">
+                <div className="custom-font-normal">{data.serviceName}</div>
+                <div className="custom-font-small custom-text-gray">
+                  {data.apponintmentCounts} Appointments
+                </div>
+              </div>
+              <div className="custom-font-large fw-bold">
+                ₹ {data.salesAmount}
+                <span className="custom-font-normal custom-font-smaller">
+                  .00
+                </span>
               </div>
             </div>
-            <div className="custom-font-normal fw-bold">
-              ₹ {data.salesAmount}
-              <span className="custom-font-small">.00</span>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }

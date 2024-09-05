@@ -1,5 +1,9 @@
 #root {
   --boxes-border: #71849e84;
+  --custom-bg-blue: #3888ff;
+}
+.overflow-hidden {
+  overflow: hidden;
 }
 
 body {
@@ -81,4 +85,13 @@ body {
 
 .custom-card-background {
   background-color: #f4f6ff;
+}
+
+.btn-custom-blue {
+  background-color: #3888ff; /* Default background color */
+  border: none;
+}
+
+.btn-custom-blue:hover {
+  background-color: #6ea8ff; /* Hover background color */
 }

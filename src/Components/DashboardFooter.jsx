@@ -12,7 +12,7 @@ function DashboardFooter() {
     <div className="p-1 pt-2 pb-2 shadow-lg dashboard-footer-container w-100 rounded-bottom rounded-4">
       <div className="d-flex gap-3  justify-content-center align-items-center">
         <Link
-          to={"/"}
+          to={"/dashboard"}
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
@@ -20,7 +20,7 @@ function DashboardFooter() {
           </button>
         </Link>
         <Link
-          to={"/"}
+          to={"/appointments"}
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">

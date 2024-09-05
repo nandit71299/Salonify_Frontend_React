@@ -1,0 +1,9 @@
+.icon {
+  background-color: var(--custom-bg-blue);
+  width: fit-content;
+  padding: 15px 22px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}

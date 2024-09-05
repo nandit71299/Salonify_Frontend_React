@@ -12,8 +12,8 @@ function Dashboard(props) {
   const [showBanner, setShowBanner] = useState(true);
 
   return (
-    <div className="dashboard-page-container pt-3">
-      <div className="container">
+    <div className="dashboard-page-container pt-3 pb-5">
+      <div className="container mb-5">
         <div className="dashboard-page-header d-flex gap-3 p-1 justify-content-center align-items-center">
           <div className="dashboard-user-icon">
             <img src={avatar} alt="" />
@@ -46,9 +46,12 @@ function Dashboard(props) {
                 ></i>
               </button>
             </div>
-            <div className="d-flex gap-3">
+            <div className="d-flex gap-3 align-items-center">
               <div className="p-0 m-0">
-                <img src={bulb} alt="" />
+                <i
+                  className="fa-solid fa-lightbulb fa-lg"
+                  style={{ color: " #FFD43B" }}
+                ></i>
               </div>
               <div className="flex-grow-1">
                 <h6 className="custom-font-large text-white m-0">

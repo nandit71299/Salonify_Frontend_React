@@ -12,6 +12,7 @@ import LoginPage from "./Pages/LoginRegistration/LoginPage";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
 import { NotificationProvider } from "./Context/NotificationContext"; // Import the provider
+import Appointments from "./Pages/Appointments/Appointments";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
                 <Route path="/registerotp" element={<RegisterOtp />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/appointments" element={<Appointments />} />
               </Routes>
             </div>
           </Router>

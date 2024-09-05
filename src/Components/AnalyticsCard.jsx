@@ -98,7 +98,12 @@ function AnalyticsCard(props) {
             <Tooltip id="expected-sales" className="w-75" />
           </div>
           <h2 className="custom-font-larger m-0 ">
-            ₹{props.expectedSales || 28}
+            ₹
+            {props.expectedSales || (
+              <span>
+                2800<span className="custom-font-small">.00</span>
+              </span>
+            )}
           </h2>
         </div>
       </div>
