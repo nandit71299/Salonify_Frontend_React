@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import infoicon from "../assets/info-icon.png";
+
 import { Tooltip } from "react-tooltip";
 
 function AnalyticsCard(props) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../Components/Header";
 import Filters from "../../Components/Filters";
 import AppointmentCard from "../../Components/AppointmentCard";
@@ -6,6 +6,19 @@ import DashboardFooter from "../../Components/DashboardFooter";
 
 function Appointments(props) {
   const [showFilters, setShowFilters] = useState(false); // Initially hide the filters
+
+  useEffect(() => {
+    if (showFilters) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    // Clean up class on component unmount
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [showFilters]);
 
   const data = Array.from({ length: 10 }, (_, index) => index);
 

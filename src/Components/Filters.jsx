@@ -11,7 +11,7 @@ function Filters(props) {
         backgroundColor: "rgba(120, 120, 120, 0.8)",
         position: "fixed",
         backdropFilter: "blur(2px)",
-        zIndex: 1,
+        zIndex: 1050,
       }}
       className="d-flex flex-column justify-content-end pb-3 p-3 align-items-center"
       onClick={props.closeFilters}
@@ -26,24 +26,28 @@ function Filters(props) {
             onClick={props.closeFilters}
             role="button"
           ></div>
-          <div className="w-100 custom-font-normal">Filter By</div>
+          <div className="w-100 custom-font-small">Filter By</div>
           <div className="d-flex w-100 align-items-center">
-            <h6 className="flex-grow-1 m-0">Booking Start Time</h6>
+            <h6 className="flex-grow-1 m-0 custom-font-normal fw-bold">
+              Booking Start Time
+            </h6>
             <select
               name="bookingStartTime"
               id="bookingStartTime"
-              className="p-2 rounded-3"
+              className="p-1 rounded-3"
             >
               <option value="scheduled">Earliest First</option>
               <option value="cancelled">Earliest Last</option>
             </select>
           </div>
           <div className="d-flex w-100 align-items-center">
-            <h6 className="flex-grow-1 m-0">Appointment Status</h6>
+            <h6 className="flex-grow-1 m-0 custom-font-normal fw-bold">
+              Appointment Status
+            </h6>
             <select
               name="appointmentStatusOptions"
               id="appointmentStatusOptions"
-              className="p-2 rounded-3"
+              className="p-1 rounded-3"
             >
               <option value="scheduled">Scheduled</option>
               <option value="cancelled">Cancelled</option>

@@ -25,7 +25,7 @@ function AppointmentCard(props) {
               Appointment time: {props.appointmentTime || "02:30 - 03:30"}
             </div>
           </div>
-          <div className="d-flex gap-2 align-items-center">
+          <div className="d-flex pt-2 gap-2 align-items-center">
             <div className="bg-success custom-font-small text-white p-1 rounded">
               {props.paymentStatus || "Partially Paid"}
             </div>

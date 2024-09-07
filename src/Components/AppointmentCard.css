@@ -1,9 +1,12 @@
 .icon {
-  background-color: var(--custom-bg-blue);
-  width: fit-content;
-  padding: 15px 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px; /* Adjust size as needed */
+  height: 50px; /* Adjust size as needed */
   border-radius: 50%;
-  color: white;
-  font-weight: bold;
-  font-size: 1rem;
+  background-color: #007bff; /* Blue background color */
+  color: white; /* Text color */
+  text-align: center;
+  line-height: 1;
 }

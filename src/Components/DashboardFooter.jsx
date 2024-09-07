@@ -20,7 +20,7 @@ function DashboardFooter() {
           </button>
         </Link>
         <Link
-          to={"/appointments"}
+          to={"/payments"}
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
@@ -28,7 +28,7 @@ function DashboardFooter() {
           </button>
         </Link>
         <Link
-          to={"/"}
+          to={"/appointments"}
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
