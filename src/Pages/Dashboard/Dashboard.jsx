@@ -73,29 +73,30 @@ function Dashboard(props) {
             (!showBanner ? "pt-3" : "")
           }
         >
-          <div className="d-flex border custom-bg-gray border-secondary rounded-3 gap-2 p-1 justify-content-center align-items-center">
+          <div className="ps-2 pe-2 d-flex border custom-bg-gray border-secondary rounded-3 gap-2 p-1 justify-content-center align-items-center">
             <Link to={"/appointments"} className="text-decoration-none">
               <button className="d-flex gap-2 justity-content-center btn align-items-center p-0">
-                <div>
-                  <img src={hamburger} alt="" />
-                </div>
+                {/* <div> */}
+                <i className="fa-solid fa-briefcase"></i> {/* </div> */}
                 <p className="m-0 custom-font-normal">Appointments</p>
               </button>
             </Link>
           </div>
-          <div className="d-flex border custom-bg-gray border-secondary rounded-3 gap-2 p-1 justify-content-center align-items-center">
+          <div className="ps-2 pe-2 d-flex border custom-bg-gray border-secondary rounded-3 gap-2 p-1 justify-content-center align-items-center">
             <button className="d-flex gap-2 justity-content-center btn align-items-center p-0">
-              <div>
-                <img src={hamburger} alt="" />
-              </div>
+              {/* <div> */}
+              {/* <img src={hamburger} alt="" /> */}
+              {/* </div> */}
+              <i className="fa-solid fa-list-check"></i>
               <p className="m-0 custom-font-normal">Services</p>
             </button>
           </div>
-          <div className="d-flex border custom-bg-gray border-secondary rounded-3 gap-2 p-1 justify-content-center align-items-center">
+          <div className="ps-2 pe-2 d-flex border custom-bg-gray border-secondary rounded-3 gap-2 p-1 justify-content-center align-items-center">
             <button className="d-flex gap-2 justity-content-center btn align-items-center p-0">
-              <div>
-                <img src={hamburger} alt="" />
-              </div>
+              {/* <div> */}
+              {/* <img src={hamburger} alt="" /> */}
+              {/* </div> */}
+              <i className="fa-regular fa-credit-card"></i>
               <p className="m-0 custom-font-normal">Payments</p>
             </button>
           </div>

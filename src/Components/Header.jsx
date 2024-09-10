@@ -22,12 +22,18 @@ export default function Header(props) {
           {props.subText}
         </div>
       </div>
-      <div className="px-3 m-0 text-end flex-fill p-0 header-right-option mx-auto custom-font-normal custom-text-blue custom-font-bold">
-        {props.rightOption ? (
-          props.rightOption
-        ) : (
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        )}
+      <div className="text-end flex-fill p-0 header-right-option mx-auto custom-font-normal custom-text-blue custom-font-bold">
+        <button
+          onClick={goBack}
+          className="btn p-0 pe-3 text-decoration-none text-primary"
+        >
+          {props.rightOption ? (
+            props.rightOption
+          ) : (
+            // <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <></>
+          )}
+        </button>
       </div>
     </div>
   );

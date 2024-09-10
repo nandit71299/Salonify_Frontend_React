@@ -2,21 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./DashboardFooter.css";
-import home from "../assets/home.png";
-import currency from "../assets/currency.png";
-import work from "../assets/work.png";
-import avatar from "../assets/avatar.png";
 
 function DashboardFooter() {
   return (
-    <div className="p-1 pt-2 pb-2 shadow-lg dashboard-footer-container w-100 rounded-bottom rounded-4">
+    <div className="p-1 pt-3 pb-3 shadow-lg dashboard-footer-container w-100 rounded-bottom rounded-4 border-light-subtle border">
       <div className="d-flex gap-3  justify-content-center align-items-center">
         <Link
           to={"/dashboard"}
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
-            <img src={home} alt="" />
+            <i className="fa-solid fa-xl fa-house"></i>
           </button>
         </Link>
         <Link
@@ -24,7 +20,7 @@ function DashboardFooter() {
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
-            <img src={currency} alt="" />
+            <i className="fa-solid fa-indian-rupee-sign fa-xl"></i>
           </button>
         </Link>
         <Link
@@ -32,15 +28,15 @@ function DashboardFooter() {
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
-            <img src={work} alt="" />
+            <i className="fa-solid fa-xl fa-briefcase"></i>
           </button>
         </Link>
         <Link
-          to={"/"}
+          to={"/profile"}
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
-            <img src={avatar} alt="" />
+            <i className="fa-solid fa-xl fa-user"></i>
           </button>
         </Link>
       </div>

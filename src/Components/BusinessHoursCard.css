@@ -1,0 +1,29 @@
+/* BusinessHoursCard.css */
+.custom-time-picker {
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100px; /* Ensure width is set for consistency */
+}
+
+.custom-time-picker .react-ios-time-picker {
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.custom-time-picker .react-ios-time-picker-header,
+.custom-time-picker .react-ios-time-picker-hour,
+.custom-time-picker .react-ios-time-picker-minute {
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.custom-time-picker .react-ios-time-picker-input {
+  text-align: center !important;
+  padding: 0;
+  width: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}

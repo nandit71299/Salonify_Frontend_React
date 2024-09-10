@@ -7,14 +7,32 @@ import CustomTextInput from "../../Components/CustomTextInput";
 import RegisterFooter from "../../Components/RegisterFooter";
 import CustomSwitch from "../../Components/CustomFormSwitch";
 
-export default function RegisterBusinessDetails() {
+export default function RegisterBusinessDetails({
+  mode = "create", // mode: "create" or "edit"
+  initialData = {},
+  onSubmit,
+}) {
   const [uploaderMessage, setUploaderMessage] = useState("+");
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState(initialData.image || null);
+  const [isSwitchOn, setIsSwitchOn] = useState(
+    initialData.gstRegistered || false
+  );
+  const [formData, setFormData] = useState({
+    salonName: initialData.salonName || "",
+    contactNumber: initialData.contactNumber || "",
+    email: initialData.email || "",
+    description: initialData.description || "",
+    salonType: initialData.salonType || "-",
+    noOfSeats: initialData.noOfSeats || "",
+    address: initialData.address || "",
+    gstNumber: initialData.gstNumber || "",
+    legalName: initialData.legalName || "",
+    gstType: initialData.gstType || "-",
+  });
 
   const handleSwitchChange = () => {
     setIsSwitchOn(!isSwitchOn);
   };
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
 
   function onDrop(acceptedFiles) {
     if (acceptedFiles.length > 0) {
@@ -44,12 +62,28 @@ export default function RegisterBusinessDetails() {
     maxFiles: 1,
   });
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = () => {
+    if (onSubmit) {
+      onSubmit(formData);
+    }
+  };
+
   return (
     <div className="register-business-details-page-container">
       <Header
         backButton={true}
-        heading="Let's Get You Started"
-        subText="Create a Salonify account to continue"
+        heading={
+          mode === "create" ? "Let's Get You Started" : "Edit Business Details"
+        }
+        subText={
+          mode === "create" ? "Create a Salonify account to continue" : ""
+        }
+        rightOption={mode === "edit" ? "Done" : <></>}
       />
       <div className="container d-flex flex-column justify-content-center align-items-center register-business-details-content-container">
         <div className="register-image-dropper-wrapper">
@@ -80,34 +114,66 @@ export default function RegisterBusinessDetails() {
         </div>
         <div className="container">
           <div className="py-2 custom-font-bold">Business Details</div>
-          <CustomTextInput label="Salon Name" />
+          <CustomTextInput
+            label="Salon Name"
+            name="salonName"
+            value={formData.salonName}
+            onChange={handleInputChange}
+          />
           <div className="row">
             <div className="col-6">
-              <CustomTextInput label="Salon Contact Number" />
-            </div>{" "}
+              <CustomTextInput
+                label="Salon Contact Number"
+                name="contactNumber"
+                value={formData.contactNumber}
+                onChange={handleInputChange}
+              />
+            </div>
             <div className="col-6">
-              <CustomTextInput label="Salon Email" />
+              <CustomTextInput
+                label="Salon Email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+              />
             </div>
           </div>
           <div className="custom-font-bold custom-font-small custom-text-blue py-2">
             Description
           </div>
-          <textarea className="form-control"></textarea>
+          <textarea
+            className="form-control"
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+          ></textarea>
           <div className="py-2 custom-text-blue custom-font-small custom-font-bold">
             Salon Type
             <select
               name="salonType"
               id="salonType"
               className="form-control my-1"
+              value={formData.salonType}
+              onChange={handleInputChange}
             >
               <option value="-">-</option>
-              <option value="Select">Men's</option>
-              <option value="Selected">Women's</option>
-              <option value="Selected">Unisex</option>
+              <option value="Men's">Men's</option>
+              <option value="Women's">Women's</option>
+              <option value="Unisex">Unisex</option>
             </select>
           </div>
-          <CustomTextInput label="No. of Seats" />
-          <CustomTextInput label="Salon Address" />
+          <CustomTextInput
+            label="No. of Seats"
+            name="noOfSeats"
+            value={formData.noOfSeats}
+            onChange={handleInputChange}
+          />
+          <CustomTextInput
+            label="Salon Address"
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
+          />
           <div className="d-flex justify-content-between pt-3">
             <p>Is Salon GST Registered? </p>
             <CustomSwitch
@@ -116,26 +182,48 @@ export default function RegisterBusinessDetails() {
               onChange={handleSwitchChange}
             />
           </div>
-          {isSwitchOn && <CustomTextInput label="GST Registration Number" />}
-          {isSwitchOn && <CustomTextInput label="Legal Business Name" />}
           {isSwitchOn && (
-            <div className="py-2 custom-text-blue custom-font-small custom-font-bold">
-              GST Registration Type
-              <select
-                name="gstRegistrationType"
-                id="gstRegistrationType"
-                className="form-control my-1"
-              >
-                <option value="-">-</option>
-                <option value="Sole Proprietership">Men's</option>
-                <option value="Partnership">Women's</option>
-                <option value="LLP">Unisex</option>
-              </select>
-            </div>
+            <>
+              <CustomTextInput
+                label="GST Registration Number"
+                name="gstNumber"
+                value={formData.gstNumber}
+                onChange={handleInputChange}
+              />
+              <CustomTextInput
+                label="Legal Business Name"
+                name="legalName"
+                value={formData.legalName}
+                onChange={handleInputChange}
+              />
+              <div className="py-2 custom-text-blue custom-font-small custom-font-bold">
+                GST Registration Type
+                <select
+                  name="gstType"
+                  id="gstType"
+                  className="form-control my-1"
+                  value={formData.gstType}
+                  onChange={handleInputChange}
+                >
+                  <option value="-">-</option>
+                  <option value="Sole Proprietorship">
+                    Sole Proprietorship
+                  </option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="LLP">LLP</option>
+                </select>
+              </div>
+            </>
           )}
         </div>
       </div>
-      <RegisterFooter buttonText="Next" path={"/registersetpassword"} />
+      {mode === "create" && (
+        <RegisterFooter
+          buttonText={mode === "create" ? "Next" : "Save"}
+          onClick={handleSubmit}
+          path="/registersetpassword"
+        />
+      )}
     </div>
   );
 }

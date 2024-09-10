@@ -16,10 +16,10 @@ export default function RegisterSetPassword() {
       <div className="container register-set-password-page-content-container d-flex flex-column justify-content-center align-items-center">
         <h6 className="align-self-center pb-4">Create Your Password</h6>
         <div className="col-10">
-          <CustomTextInput label="Password" />
+          <CustomTextInput label="Password" type="password" />
         </div>
         <div className="col-10">
-          <CustomTextInput label="Confirm Password" />
+          <CustomTextInput label="Confirm Password" type="password" />
         </div>
       </div>
       <RegisterFooter

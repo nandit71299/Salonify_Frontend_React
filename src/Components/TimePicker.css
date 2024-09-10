@@ -1,0 +1,66 @@
+.time-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.picker-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 300px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+}
+
+.picker-wheel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  position: relative;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.picker-item {
+  font-size: 24px;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  /* transition: background 0.3s; */
+}
+
+.picker-item:hover,
+.picker-item.selected {
+  /* background-color: #ddd; */
+  border: 1px solid white;
+}
+
+.picker-wheel::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.picker-wheel:before,
+.picker-wheel:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 20px;
+  /* background: rgba(0, 0, 0, 0.1); */
+  pointer-events: none;
+}
+
+.picker-wheel:before {
+  top: 0;
+}
+
+.picker-wheel:after {
+  bottom: 0;
+}

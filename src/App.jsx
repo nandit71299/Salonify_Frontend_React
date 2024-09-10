@@ -14,6 +14,11 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import { NotificationProvider } from "./Context/NotificationContext"; // Import the provider
 import Appointments from "./Pages/Appointments/Appointments";
 import Payments from "./Pages/Payments/Payments";
+import Profile from "./Pages/Profile/Profile";
+import EditProfile from "./Pages/Profile/EditProfile";
+import SalonDetails from "./Pages/Profile/SalonDetails";
+import BusinessHours from "./Pages/Profile/BusinessHours";
+import GstRateSetup from "./Pages/Profile/GstRateSetup";
 
 const App = () => {
   return (
@@ -27,7 +32,7 @@ const App = () => {
                 <Route path="/register" element={<RegisterPersonalDetails />} />
                 <Route
                   path="/registerbusinessdetails"
-                  element={<RegisterBusinessDetails />}
+                  element={<RegisterBusinessDetails mode="create" />}
                 />
                 <Route
                   path="/registersetpassword"
@@ -38,6 +43,11 @@ const App = () => {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/appointments" element={<Appointments />} />
                 <Route path="/payments" element={<Payments />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/edit-profile" element={<EditProfile />} />
+                <Route path="/salon-details" element={<SalonDetails />} />
+                <Route path="/business-hours" element={<BusinessHours />} />
+                <Route path="/gst-rate" element={<GstRateSetup />} />
               </Routes>
             </div>
           </Router>

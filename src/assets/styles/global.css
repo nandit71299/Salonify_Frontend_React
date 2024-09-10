@@ -1,6 +1,7 @@
 #root {
   --boxes-border: #71849e84;
   --custom-bg-blue: #3888ff;
+  --options-bg-gray: #f7f8ff;
 }
 .no-scroll {
   overflow: hidden;
@@ -96,3 +97,5 @@ body {
 .btn-custom-blue:hover {
   background-color: #6ea8ff; /* Hover background color */
 }
+
+/* ////////// */

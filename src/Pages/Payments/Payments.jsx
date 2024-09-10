@@ -81,7 +81,7 @@ function Payments() {
   const shouldHide = isFocused || inputValue.length > 0;
 
   return (
-    <div>
+    <div className="pb-5">
       {showFilters && <Filters closeFilters={toggleFilterPage} />}
       <Header heading="Payments" subText="Bonanza" />
 
@@ -138,7 +138,7 @@ function Payments() {
         <div className="position-relative">
           <input
             type="search"
-            className="border-0 input-group border rounded py-2 px-2"
+            className="border-0 bg-transparent input-group border rounded py-2 px-2"
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChange={(e) => setInputValue(e.target.value)}

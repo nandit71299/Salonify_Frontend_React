@@ -8,8 +8,8 @@ export default function CustomSwitch({ id, checked, onChange }) {
         type="checkbox"
         id={id}
         checked={checked}
-        onChange={onChange}
         className="custom-switch-input"
+        onChange={onChange} // Call the onChange handler
       />
       <label htmlFor={id} className="custom-switch-label">
         <span className="custom-switch-slider"></span>
