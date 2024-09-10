@@ -130,7 +130,7 @@ function Payments() {
         </div>
         <div>
           <button className="btn m-0 p-0" onClick={toggleFilterPage}>
-            <i className="fa-solid fa-filter"></i>
+            <i className="fa-solid fa-filter fa-icon"></i>
           </button>
         </div>
       </div>

@@ -12,7 +12,7 @@ function DashboardFooter() {
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
-            <i className="fa-solid fa-xl fa-house"></i>
+            <i className="fa-solid fa-xl fa-house fa-icon"></i>
           </button>
         </Link>
         <Link
@@ -20,7 +20,7 @@ function DashboardFooter() {
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
-            <i className="fa-solid fa-indian-rupee-sign fa-xl"></i>
+            <i className="fa-solid fa-indian-rupee-sign fa-xl fa-icon"></i>
           </button>
         </Link>
         <Link
@@ -28,7 +28,7 @@ function DashboardFooter() {
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
-            <i className="fa-solid fa-xl fa-briefcase"></i>
+            <i className="fa-solid fa-xl fa-briefcase fa-icon"></i>
           </button>
         </Link>
         <Link
@@ -36,7 +36,7 @@ function DashboardFooter() {
           className="flex-grow-1 d-flex justify-content-center align-items-center"
         >
           <button className="btn">
-            <i className="fa-solid fa-xl fa-user"></i>
+            <i className="fa-solid fa-xl fa-user fa-icon"></i>
           </button>
         </Link>
       </div>

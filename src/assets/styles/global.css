@@ -9,8 +9,8 @@
 }
 
 body {
-  font-family: "Metropolis", sans-serif;
-  font-weight: 400;
+  font-family: "Metropolis", sans-serif !important;
+  /* font-weight: 400; */
 }
 
 .custom-font-bold {

@@ -28,7 +28,7 @@ function ProfilePageMenu({ title, options }) {
                 </p>
               </ul>
               <button className="btn">
-                <i className="fa-solid fa-chevron-right"></i>
+                <i className="fa-solid fa-chevron-right fa-icon"></i>
               </button>
             </div>
           </Link>

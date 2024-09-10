@@ -49,6 +49,10 @@ function GstRateSetup() {
                 </select>
               </div>
             </div>
+            <p className="m-0 custom-text-gray custom-font-bold custom-font-small pt-2">
+              Please note: The selected rate will be applied to all the
+              services, in all the next appointments
+            </p>
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ function Appointments(props) {
         <div className="pt-2 d-flex justify-content-between align-items-center">
           <div className="custom-font-bold">Today</div>
           <button className="btn m-0 p-0" onClick={openFilters}>
-            <i className="fa-solid fa-filter"></i>
+            <i className="fa-solid fa-filter fa-icon"></i>
           </button>
         </div>
         {data.map((data, index) => {

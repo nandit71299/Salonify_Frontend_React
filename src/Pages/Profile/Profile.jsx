@@ -34,7 +34,7 @@ function Profile() {
       <div className="profile-page-container container">
         <div className="pt-5 pb-5 profile-page-user-avatar d-flex flex-column align-items-center justify-content-center">
           <i
-            className="fa-solid fa-user"
+            className="fa-solid fa-user fa-icon"
             style={{ fontSize: "3em", color: "var(--custom-bg-blue)" }}
           ></i>
           <div>

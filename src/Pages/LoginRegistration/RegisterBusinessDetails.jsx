@@ -102,7 +102,7 @@ export default function RegisterBusinessDetails({
               <div className="salon-register-image-preview">
                 <img src={imagePreview} alt="Preview" />
                 <button onClick={() => setImagePreview(null)} className="btn">
-                  <i className="fa fa-trash" aria-hidden="true"></i>
+                  <i className="fa fa-trash fa-icon" aria-hidden="true"></i>
                 </button>
               </div>
             ) : (

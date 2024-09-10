@@ -41,7 +41,7 @@ function Dashboard(props) {
                 onClick={() => setShowBanner(false)}
               >
                 <i
-                  className="fa-solid fa-xmark m-0 p-0"
+                  className="fa-solid fa-xmark m-0 p-0 fa-icon"
                   style={{ color: "white" }}
                 ></i>
               </button>
@@ -49,7 +49,7 @@ function Dashboard(props) {
             <div className="d-flex gap-3 align-items-center ">
               <div className="p-0 m-0">
                 <i
-                  className="fa-solid fa-lightbulb fa-lg"
+                  className="fa-solid fa-lightbulb fa-lg fa-icon"
                   style={{ color: " #FFD43B" }}
                 ></i>
               </div>
@@ -77,7 +77,7 @@ function Dashboard(props) {
             <Link to={"/appointments"} className="text-decoration-none">
               <button className="d-flex gap-2 justity-content-center btn align-items-center p-0">
                 {/* <div> */}
-                <i className="fa-solid fa-briefcase"></i> {/* </div> */}
+                <i className="fa-solid fa-briefcase fa-icon"></i> {/* </div> */}
                 <p className="m-0 custom-font-normal">Appointments</p>
               </button>
             </Link>
@@ -87,7 +87,7 @@ function Dashboard(props) {
               {/* <div> */}
               {/* <img src={hamburger} alt="" /> */}
               {/* </div> */}
-              <i className="fa-solid fa-list-check"></i>
+              <i className="fa-solid fa-list-check fa-icon"></i>
               <p className="m-0 custom-font-normal">Services</p>
             </button>
           </div>
@@ -96,7 +96,7 @@ function Dashboard(props) {
               {/* <div> */}
               {/* <img src={hamburger} alt="" /> */}
               {/* </div> */}
-              <i className="fa-regular fa-credit-card"></i>
+              <i className="fa-regular fa-credit-card fa-icon"></i>
               <p className="m-0 custom-font-normal">Payments</p>
             </button>
           </div>

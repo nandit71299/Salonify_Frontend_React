@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import "./App.css";
 import "./assets/styles/global.css";
 import Home from "./Pages/LoginRegistration/Home";
 import "./assets/fonts/Metropolis-Black.otf";
@@ -19,6 +19,7 @@ import EditProfile from "./Pages/Profile/EditProfile";
 import SalonDetails from "./Pages/Profile/SalonDetails";
 import BusinessHours from "./Pages/Profile/BusinessHours";
 import GstRateSetup from "./Pages/Profile/GstRateSetup";
+import Holidays from "./Pages/Profile/Holidays";
 
 const App = () => {
   return (
@@ -48,6 +49,7 @@ const App = () => {
                 <Route path="/salon-details" element={<SalonDetails />} />
                 <Route path="/business-hours" element={<BusinessHours />} />
                 <Route path="/gst-rate" element={<GstRateSetup />} />
+                <Route path="/holidays" element={<Holidays />} />
               </Routes>
             </div>
           </Router>

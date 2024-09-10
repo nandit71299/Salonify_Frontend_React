@@ -1,4 +1,6 @@
 @font-face {
-  font-family: "Metroplis"; /*Can be any text*/
-  src: url("./assets/fonts/Metropolis-Black.otf") format("opentype");
+  font-family: "Metropolis";
+  src: url("./assets/fonts/Metropolis-Regular.otf") format("opentype");
+  font-weight: normal; /* You can define specific weights if needed */
+  font-style: normal; /* You can define specific styles if needed */
 }

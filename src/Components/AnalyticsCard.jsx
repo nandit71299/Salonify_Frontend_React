@@ -93,7 +93,7 @@ function AnalyticsCard(props) {
                 "Expected Sales is a expected amount of the sales that can be made in a specified date range. It's not actual sales."
               }
             >
-              <i className="fa-solid fa-circle-info fa-xs custom-bg-card-background"></i>
+              <i className="fa-solid fa-icon fa-circle-info fa-xs custom-bg-card-background"></i>
             </button>
             <Tooltip id="expected-sales" className="w-75" />
           </div>
