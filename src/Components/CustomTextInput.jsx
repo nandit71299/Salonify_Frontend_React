@@ -11,8 +11,9 @@ const CustomTextInput = React.forwardRef((props, ref) => {
         {props.label}
       </label>
       <input
+        className={`${props.classNames} form-control`}
+        placeholder={props.placeholder}
         type={props.type || "text"} // Default to text if no type is provided
-        className="form-control"
         id={props.id}
         name={props.name} // Added name attribute
         required={props.required} // Allow for a dynamic 'required' attribute

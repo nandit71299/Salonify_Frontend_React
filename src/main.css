@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Metropolis", sans-serif !important;
-  font-weight: 100;
+  /* font-weight: 100; */
 }
 .fa-icon {
   font-family: "Font Awesome 6 Free", sans-serif !important;

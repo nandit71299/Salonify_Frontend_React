@@ -38,7 +38,9 @@ function BusinessHoursCard({
   return (
     <div className="container d-flex justify-content-evenly align-items-center gap-2 flex-nowrap">
       <div className="flex-grow-1">
-        <h6 className="p-0 m-0 text-start text-truncate flex-shrink">{day}</h6>
+        <div className="p-0 m-0 text-start w-75 flex-shrink">
+          <h6 className="p-0 m-0 text-truncate ">{day}</h6>
+        </div>
       </div>
       <div className="d-flex align-items-start justify-content-start gap-2">
         <div

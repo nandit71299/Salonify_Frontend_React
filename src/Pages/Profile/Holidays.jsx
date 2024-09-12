@@ -38,7 +38,7 @@ function Holidays() {
                 <div>
                   <Link
                     className="text-decoration-none text-dark"
-                    to={"/edit-holiday"}
+                    to={`/edit-holiday/${index}`}
                   >
                     <i className="fa-solid fa-arrow-right fa-icon"></i>
                   </Link>

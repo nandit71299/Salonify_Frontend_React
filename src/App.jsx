@@ -11,7 +11,7 @@ import RegisterOtp from "./Pages/LoginRegistration/RegisterOtp";
 import LoginPage from "./Pages/LoginRegistration/LoginPage";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
-import { NotificationProvider } from "./Context/NotificationContext"; // Import the provider
+import { NotificationProvider } from "./Context/NotificationContext";
 import Appointments from "./Pages/Appointments/Appointments";
 import Payments from "./Pages/Payments/Payments";
 import Profile from "./Pages/Profile/Profile";
@@ -20,6 +20,9 @@ import SalonDetails from "./Pages/Profile/SalonDetails";
 import BusinessHours from "./Pages/Profile/BusinessHours";
 import GstRateSetup from "./Pages/Profile/GstRateSetup";
 import Holidays from "./Pages/Profile/Holidays";
+import AddEditHoliday from "./Pages/Profile/AddEditHoliday";
+import Settlements from "./Pages/Settlements/Settlements";
+import SettlementDetails from "./Pages/Settlements/SettlementDetails";
 
 const App = () => {
   return (
@@ -50,6 +53,19 @@ const App = () => {
                 <Route path="/business-hours" element={<BusinessHours />} />
                 <Route path="/gst-rate" element={<GstRateSetup />} />
                 <Route path="/holidays" element={<Holidays />} />
+                <Route
+                  path="/edit-holiday/:id"
+                  element={<AddEditHoliday mode="edit" />}
+                />
+                <Route
+                  path="/add-holiday/"
+                  element={<AddEditHoliday mode="create" />}
+                />
+                <Route path="/settlements" element={<Settlements />} />
+                <Route
+                  path="/settlement-details/:id"
+                  element={<SettlementDetails />}
+                />
               </Routes>
             </div>
           </Router>
