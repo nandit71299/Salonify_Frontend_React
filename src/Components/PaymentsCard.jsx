@@ -9,7 +9,7 @@ function PaymentsCard(props) {
             <h6 className="m-0">{props.name || "Sareria Nandit"}</h6>
             <div className="d-flex align-items-center">
               <p className="custom-font-normal m-0">
-                Appointment: #{props.appointmentNo || "3423"} &nbsp;
+                Appointment: {props.appointmentNo || "3423"} &nbsp;
               </p>
               <p className="m-0">•</p>
               <div className="custom-font-normal">

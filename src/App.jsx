@@ -21,8 +21,10 @@ import BusinessHours from "./Pages/Profile/BusinessHours";
 import GstRateSetup from "./Pages/Profile/GstRateSetup";
 import Holidays from "./Pages/Profile/Holidays";
 import AddEditHoliday from "./Pages/Profile/AddEditHoliday";
-import Settlements from "./Pages/Settlements/Settlements";
-import SettlementDetails from "./Pages/Settlements/SettlementDetails";
+import Settlements from "./Pages/Profile/Settlements";
+import SettlementDetails from "./Pages/Profile/SettlementDetails";
+import CustomSupport from "./Pages/Profile/CustomSupport";
+import SupportReqSubmitted from "./Pages/Profile/SupportReqSubmitted";
 
 const App = () => {
   return (
@@ -65,6 +67,11 @@ const App = () => {
                 <Route
                   path="/settlement-details/:id"
                   element={<SettlementDetails />}
+                />
+                <Route path="/support" element={<CustomSupport />} />
+                <Route
+                  path="/support-req-submitted"
+                  element={<SupportReqSubmitted />}
                 />
               </Routes>
             </div>

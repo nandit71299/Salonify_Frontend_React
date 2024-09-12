@@ -151,7 +151,7 @@ function Payments() {
           >
             <div>
               <i
-                className="fa-solid fa-magnifying-glass p-1"
+                className="fa-solid fa-icon fa-magnifying-glass p-1"
                 style={{ color: "gray" }}
               ></i>
               &nbsp; Search

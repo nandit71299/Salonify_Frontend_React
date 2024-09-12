@@ -92,13 +92,15 @@ function Dashboard(props) {
             </button>
           </div>
           <div className="ps-2 pe-2 d-flex border custom-bg-gray border-secondary rounded-3 gap-2 p-1 justify-content-center align-items-center">
-            <button className="d-flex gap-2 justity-content-center btn align-items-center p-0">
-              {/* <div> */}
-              {/* <img src={hamburger} alt="" /> */}
-              {/* </div> */}
-              <i className="fa-regular fa-credit-card fa-icon"></i>
-              <p className="m-0 custom-font-normal">Payments</p>
-            </button>
+            <Link to={"/payments"} className="text-decoration-none">
+              <button className="d-flex gap-2 justity-content-center btn align-items-center p-0">
+                {/* <div> */}
+                {/* <img src={hamburger} alt="" /> */}
+                {/* </div> */}
+                <i className="fa-regular fa-credit-card fa-icon"></i>
+                <p className="m-0 custom-font-normal">Payments</p>
+              </button>
+            </Link>
           </div>
         </div>
         <div>

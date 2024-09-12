@@ -23,10 +23,6 @@ function Profile() {
       title: "Support",
       options: [{ name: "Help & Support", link: "/support" }],
     },
-    {
-      title: "Report",
-      options: [{ name: "Report a problem", link: "/report" }],
-    },
   ];
 
   return (
