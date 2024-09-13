@@ -22,7 +22,6 @@ function Appointments(props) {
 
   const data = Array.from({ length: 10 }, (_, index) => index);
 
-  console.log(data);
   function openFilters() {
     setShowFilters(true);
   }
@@ -47,6 +46,7 @@ function Appointments(props) {
         />
       )}
       <Header heading="Appointments" subText="Bonanza" />
+
       <div className="container pb-5 appointments-page-content-container">
         <div className="custom-font-normal">
           Total Appointments: {props.totalAppointments || 219}

@@ -12,7 +12,7 @@ function AnalyticsCard(props) {
           {props.cardTitle || "Analytics"}
         </div>
         <button className="btn p-0 card-title custom-font-small custom-text-blue">
-          {props.button || "View More"}
+          {/* {props.button || "View More"} */}
         </button>
       </div>
       <hr className="m-0" />

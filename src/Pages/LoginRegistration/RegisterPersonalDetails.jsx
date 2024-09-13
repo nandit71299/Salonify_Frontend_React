@@ -13,7 +13,7 @@ export default function RegisterPersonalDetails() {
         backButton={true}
         heading="Let's Get You Started"
         subText="Create a Salonify account to continue"
-        rightOption="Done"
+        // rightOption="Done"
       />
       <div className="personal-details-form-container container">
         <div className="row">

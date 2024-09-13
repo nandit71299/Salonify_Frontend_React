@@ -7,9 +7,34 @@ import SalesCard from "../../Components/SalesCard";
 import MostBookedCard from "../../Components/MostBookedCard";
 import DashboardFooter from "../../Components/DashboardFooter";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
+import { useCart } from "../../Context/CartContext";
 
 function Dashboard(props) {
   const [showBanner, setShowBanner] = useState(true);
+
+  // Just a Practice Code //
+  const { cartCount, addToCart, removeFromCart } = useCart();
+
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return (
+      <>
+        <div>Not Authenticated</div>
+        <div className="d-flex gap-2">
+          <button className="btn btn-success" onClick={addToCart}>
+            + Cart
+          </button>
+          <button className="btn btn-danger" onClick={removeFromCart}>
+            - Cart
+          </button>
+        </div>
+        <div className="mt-4 display-2">{cartCount}</div>
+      </>
+    );
+  }
+  // Just a Practice Code //
 
   return (
     <div className="dashboard-page-container pt-3 pb-5">
@@ -61,7 +86,7 @@ function Dashboard(props) {
             </div>
             <div className="dashboard-banner-view-button align-self-end">
               <button className="btn custom-font-bold custom-font-medium  text-white btn m-0 pb-0 pt-1 p-0 pe-1 pb-2">
-                View
+                {/* View */}
               </button>
             </div>
           </div>

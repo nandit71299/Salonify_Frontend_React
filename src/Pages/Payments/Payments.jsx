@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Header from "../../Components/Header";
 import Filters from "../../Components/Filters";
-import CustomTextInput from "../../Components/CustomTextInput";
 import PaymentsCard from "../../Components/PaymentsCard";
 import Footer from "../../Components/DashboardFooter";
 
@@ -77,7 +76,6 @@ function Payments() {
     },
   ];
 
-  // Determine whether to hide the icon and text
   const shouldHide = isFocused || inputValue.length > 0;
 
   return (
@@ -160,18 +158,19 @@ function Payments() {
         </div>
       </div>
       <div className="container">
-        {data.flatMap((d) => {
-          return d.transactions.flatMap((d) => {
-            return (
+        {data.flatMap((d, dateIndex) =>
+          d.transactions.map((transaction, transactionIndex) => (
+            <div key={`${dateIndex}-${transactionIndex}`}>
               <PaymentsCard
-                name={d.name}
-                appointmentNo={d.appointment}
-                amount={d.amount}
-                status={d.status}
+                name={transaction.name}
+                appointmentNo={transaction.appointment}
+                amount={transaction.amount}
+                status={transaction.status}
+                timeStamp={transaction.time} // Added missing timeStamp prop
               />
-            );
-          });
-        })}
+            </div>
+          ))
+        )}
       </div>
       <Footer />
     </div>
