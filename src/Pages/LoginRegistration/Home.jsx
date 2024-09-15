@@ -20,12 +20,12 @@ const Home = () => {
       </div>
       <div className="button-container">
         <Link to="/login">
-          <button className="login btn btn-dark rounded-5 custom-font-smaller">
+          <button className="login btn btn-dark rounded-5 custom-font-normal text-truncate w-100">
             I already have Salonify account
           </button>
         </Link>
         <Link to="/register">
-          <button className="register btn btn-white border border-black rounded-5 custom-font-smaller">
+          <button className="register btn btn-white border border-black rounded-5 custom-font-normal">
             Register
           </button>
         </Link>

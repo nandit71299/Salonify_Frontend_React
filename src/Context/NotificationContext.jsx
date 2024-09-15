@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 import NotificationComponent from "../Components/NotificationComponent"; // Import the renamed Notification component
 
 const NotificationContext = createContext();
@@ -7,9 +7,9 @@ export function NotificationProvider({ children }) {
   const [notification, setNotification] = useState(null);
   const [animationClass, setAnimationClass] = useState("slide-in");
 
-  const showNotification = (message, duration = 3000) => {
-    setAnimationClass("slide-in");
-    setNotification(message);
+  const showNotification = (message, type = "bg-info", duration = 3000) => {
+    // setAnimationClass("slide-in");
+    setNotification({ message, type });
     setTimeout(() => {
       setAnimationClass("slide-out");
       setTimeout(() => {
@@ -24,7 +24,8 @@ export function NotificationProvider({ children }) {
       {children}
       {notification && (
         <NotificationComponent
-          message={notification}
+          message={notification.message}
+          type={notification.type}
           animationClass={animationClass} // Pass the animation class
         />
       )}

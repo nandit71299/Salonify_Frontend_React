@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-
 import Header from "../../Components/Header";
 import "./RegisterBusinessDetails.css";
 import CustomTextInput from "../../Components/CustomTextInput";
 import RegisterFooter from "../../Components/RegisterFooter";
 import CustomSwitch from "../../Components/CustomFormSwitch";
+import validator from "validator";
 
 export default function RegisterBusinessDetails({
-  mode = "create", // mode: "create" or "edit"
+  mode = "create",
   initialData = {},
   onSubmit,
 }) {
@@ -30,34 +30,25 @@ export default function RegisterBusinessDetails({
     gstType: initialData.gstType || "-",
   });
 
-  const handleSwitchChange = () => {
-    setIsSwitchOn(!isSwitchOn);
-  };
-
-  function onDrop(acceptedFiles) {
-    if (acceptedFiles.length > 0) {
-      const file = acceptedFiles[0];
-      if (file instanceof File) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          setImagePreview(reader.result);
-        };
-        reader.readAsDataURL(file); // Corrected method call
-      } else {
-        setUploaderMessage("The selected file is not an image file.");
-      }
-    } else {
-      setUploaderMessage("No files were accepted.");
-    }
-  }
-
-  function onDropRejected() {
-    setUploaderMessage("Sorry, you cannot upload this file");
-  }
+  const handleSwitchChange = () => setIsSwitchOn((prev) => !prev);
 
   const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    onDropRejected,
+    onDrop: (acceptedFiles) => {
+      if (acceptedFiles.length) {
+        const file = acceptedFiles[0];
+        if (file instanceof File) {
+          const reader = new FileReader();
+          reader.onload = () => setImagePreview(reader.result);
+          reader.readAsDataURL(file);
+        } else {
+          setUploaderMessage("The selected file is not an image.");
+        }
+      } else {
+        setUploaderMessage("No files were accepted.");
+      }
+    },
+    onDropRejected: () =>
+      setUploaderMessage("Sorry, you cannot upload this file"),
     accept: { "image/*": [] },
     maxFiles: 1,
   });
@@ -65,13 +56,132 @@ export default function RegisterBusinessDetails({
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    console.log(formData);
   };
 
-  const handleSubmit = () => {
-    if (onSubmit) {
-      onSubmit(formData);
-    }
+  const validateFormData = () => {
+    const commonValidations = {
+      image: Boolean(imagePreview),
+      salonName: validator.isAlpha(formData.salonName),
+      salonContact: validator.isMobilePhone(formData.contactNumber, "en-IN"),
+      salonEmail: validator.isEmail(formData.email),
+      description: validator.isAlphanumeric(formData.description),
+      salonType:
+        validator.isAlpha(formData.salonType, "en-US", { ignore: "'" }) &&
+        formData.salonType !== "-",
+      seats: validator.isNumeric(formData.noOfSeats),
+      salonAddress: validator.isAlphanumeric(formData.address),
+      gstRegistered: typeof isSwitchOn === "boolean",
+    };
+
+    const gstValidations = isSwitchOn
+      ? {
+          gstNumber: validator.isAlphanumeric(formData.gstNumber),
+          legalName: validator.isAlphanumeric(formData.legalName),
+          gstType: validator.isAlpha(formData.gstType),
+        }
+      : {};
+
+    return {
+      isValid:
+        Object.values(commonValidations).every(Boolean) &&
+        Object.values(gstValidations).every(Boolean),
+      errors: {
+        image: commonValidations.image ? null : "Please upload an image",
+        salonName: commonValidations.salonName
+          ? null
+          : "Please enter a valid salon name",
+        salonContact: commonValidations.salonContact
+          ? null
+          : "Please enter a valid mobile number",
+        salonEmail: commonValidations.salonEmail
+          ? null
+          : "Please enter a valid email address",
+        description: commonValidations.description
+          ? null
+          : "Please enter a valid description",
+        seats: commonValidations.seats
+          ? null
+          : "Please enter a valid number of seats",
+        salonAddress: commonValidations.salonAddress
+          ? null
+          : "Please enter a valid address",
+        gstRegistered: commonValidations.gstRegistered
+          ? null
+          : "Please select GST registration status",
+        gstNumber: isSwitchOn
+          ? gstValidations.gstNumber
+            ? null
+            : "Please enter a valid GST number"
+          : null,
+        legalName: isSwitchOn
+          ? gstValidations.legalName
+            ? null
+            : "Please enter a valid legal name"
+          : null,
+        gstType: isSwitchOn
+          ? gstValidations.gstType
+            ? null
+            : "Please select a GST type"
+          : null,
+        salonType: commonValidations.salonType
+          ? null
+          : "Please select salon type",
+      },
+    };
   };
+
+  useEffect(() => {
+    if (mode === "create") {
+      const savedData = {
+        image: sessionStorage.getItem("image"),
+        salonName: sessionStorage.getItem("salonName"),
+        contactNumber: sessionStorage.getItem("salonContact"),
+        email: sessionStorage.getItem("salonEmail"),
+        description: sessionStorage.getItem("description"),
+        salonType: sessionStorage.getItem("salonType"),
+        noOfSeats: sessionStorage.getItem("seats"),
+        address: sessionStorage.getItem("salonAddress"),
+        gstRegistered: sessionStorage.getItem("gstRegistered") === "true",
+        gstNumber: sessionStorage.getItem("gstNumber"),
+        legalName: sessionStorage.getItem("legalName"),
+        gstType: sessionStorage.getItem("gstType"),
+      };
+
+      console.log(savedData.salonType);
+
+      if (savedData.image) setImagePreview(savedData.image);
+      setFormData((prev) => ({
+        salonName: savedData.salonName || prev.salonName,
+        contactNumber: savedData.contactNumber || prev.contactNumber,
+        email: savedData.email || prev.email,
+        description: savedData.description || prev.description,
+        salonType: savedData.salonType || prev.salonType,
+        noOfSeats: savedData.noOfSeats || prev.noOfSeats,
+        address: savedData.address || prev.address,
+        gstNumber: savedData.gstNumber || prev.gstNumber,
+        legalName: savedData.legalName || prev.legalName,
+        gstType: savedData.gstType || prev.gstType,
+      }));
+    }
+  }, [mode]);
+
+  useEffect(() => {
+    if (mode === "create") {
+      sessionStorage.setItem("image", imagePreview || "");
+      sessionStorage.setItem("salonName", formData.salonName);
+      sessionStorage.setItem("salonContact", formData.contactNumber);
+      sessionStorage.setItem("salonEmail", formData.email);
+      sessionStorage.setItem("description", formData.description);
+      sessionStorage.setItem("salonType", formData.salonType);
+      sessionStorage.setItem("seats", formData.noOfSeats);
+      sessionStorage.setItem("salonAddress", formData.address);
+      sessionStorage.setItem("gstRegistered", isSwitchOn.toString());
+      sessionStorage.setItem("gstNumber", formData.gstNumber);
+      sessionStorage.setItem("legalName", formData.legalName);
+      sessionStorage.setItem("gstType", formData.gstType);
+    }
+  }, [formData, isSwitchOn, imagePreview, mode]);
 
   return (
     <div className="register-business-details-page-container">
@@ -123,6 +233,7 @@ export default function RegisterBusinessDetails({
           <div className="row">
             <div className="col-6">
               <CustomTextInput
+                type="number"
                 label="Salon Contact Number"
                 name="contactNumber"
                 value={formData.contactNumber}
@@ -163,6 +274,7 @@ export default function RegisterBusinessDetails({
             </select>
           </div>
           <CustomTextInput
+            type={"number"}
             label="No. of Seats"
             name="noOfSeats"
             value={formData.noOfSeats}
@@ -219,8 +331,8 @@ export default function RegisterBusinessDetails({
       </div>
       {mode === "create" && (
         <RegisterFooter
+          validate={validateFormData}
           buttonText={mode === "create" ? "Next" : "Save"}
-          onClick={handleSubmit}
           path="/registersetpassword"
         />
       )}

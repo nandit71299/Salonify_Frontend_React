@@ -4,13 +4,13 @@ import "./App.css";
 import "./assets/styles/global.css";
 import Home from "./Pages/LoginRegistration/Home";
 import "./assets/fonts/Metropolis-Black.otf";
+
 import RegisterPersonalDetails from "./Pages/LoginRegistration/RegisterPersonalDetails";
 import RegisterBusinessDetails from "./Pages/LoginRegistration/RegisterBusinessDetails";
 import RegisterSetPassword from "./Pages/LoginRegistration/RegisterSetPassword";
 import RegisterOtp from "./Pages/LoginRegistration/RegisterOtp";
 import LoginPage from "./Pages/LoginRegistration/LoginPage";
 import Dashboard from "./Pages/Dashboard/Dashboard";
-
 import { NotificationProvider } from "./Context/NotificationContext";
 import Appointments from "./Pages/Appointments/Appointments";
 import Payments from "./Pages/Payments/Payments";

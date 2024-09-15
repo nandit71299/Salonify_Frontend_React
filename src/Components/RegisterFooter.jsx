@@ -1,11 +1,15 @@
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
+import { useNavigate } from "react-router-dom";
 import "./RegisterFooter.css";
 import { navigationService } from "../Services/navigationService";
+import { useNotification } from "../Context/NotificationContext"; // Import the notification hook
 
-// Define RegisterFooter as a normal function
 function RegisterFooter(props, ref) {
+  const { showNotification } = useNotification();
+
   const { goForward } = navigationService();
   const buttonRef = useRef(null);
+  const navigate = useNavigate(); // useNavigate from react-router-dom
 
   // Expose methods to the parent component via ref
   useImperativeHandle(ref, () => ({
@@ -16,11 +20,30 @@ function RegisterFooter(props, ref) {
     },
   }));
 
+  const handleClick = () => {
+    const validationResult = props.validate(); // Call the validate function passed as prop
+
+    if (validationResult.isValid) {
+      navigate(props.path); // Navigate to the specified path
+      props.notificationMessage &&
+        showNotification(validationResult.notificationMessage);
+    } else {
+      // Log each error message to the console
+      const errors = Object.values(validationResult.errors).filter(Boolean); // Filter out null or undefined errors
+      errors.forEach((message, index) => {
+        console.log(message);
+        setTimeout(() => {
+          showNotification(message, "danger"); // Replace with actual notification display if needed
+        }, index * 2000); // Delay each message by 1000ms (1 second) times the index
+      });
+    }
+  };
+
   return (
     <div className="register-footer-container container">
       <button
         ref={buttonRef}
-        onClick={() => goForward(`${props.path}`)}
+        onClick={props.validate ? handleClick : () => navigate(props.path)} // Use the handleClick function
         className="btn mt-3 mb-0 btn-dark custom-font-small rounded-5 px-5"
       >
         {props.buttonText}
@@ -32,5 +55,4 @@ function RegisterFooter(props, ref) {
   );
 }
 
-// Wrap RegisterFooter with forwardRef to forward the ref
 export default forwardRef(RegisterFooter);

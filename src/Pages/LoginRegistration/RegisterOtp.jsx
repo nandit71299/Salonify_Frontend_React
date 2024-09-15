@@ -38,7 +38,7 @@ function RegisterOtp() {
       {loading && <Loader />} {/* Show loader when loading */}
       <Header
         backButton={true}
-        rightOption="Done"
+        // rightOption="Done"
         heading="Let's Get You Started"
         subText="Create a Salonify account to continue"
       />

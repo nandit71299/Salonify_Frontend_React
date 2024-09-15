@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./NotificationComponent.css"; // Import the CSS for styling
 
-function AppNotification({ message, duration, onClose }) {
+function AppNotification({ message, duration, onClose, type }) {
   const [visible, setVisible] = useState(true);
   const [animationClass, setAnimationClass] = useState("slide-in");
 
@@ -22,7 +22,11 @@ function AppNotification({ message, duration, onClose }) {
 
   if (!visible) return null;
 
-  return <div className={`notification ${animationClass}`}>{message}</div>;
+  return (
+    <div className={`notification ${animationClass} ${`bg-` + type}`}>
+      {message}
+    </div>
+  );
 }
 
 export default AppNotification;

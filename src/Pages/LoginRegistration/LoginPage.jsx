@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-
+import React, { useState, useRef } from "react";
 import Header from "../../Components/Header";
 import "./LoginPage.css";
 import CustomTextInput from "../../Components/CustomTextInput";
-import Footer from "../../Components/RegisterFooter";
+import RegisterFooter from "../../Components/RegisterFooter";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const footerRef = useRef(null); // Create a ref for RegisterFooter
 
   // Handle input changes
   const handleChange = (e) => {
@@ -17,6 +17,27 @@ export default function LoginPage() {
     } else if (id === "password") {
       setPassword(value);
     }
+  };
+
+  // Validate the form
+  const validateForm = () => {
+    const isEmailValid = email.includes("@");
+    const isPasswordValid = password.length >= 6;
+
+    // Create an object to hold the validation result and messages
+    const validationResult = {
+      isValid: isEmailValid && isPasswordValid,
+      errors: {
+        email: isEmailValid
+          ? null
+          : "Email is required and must be a valid email address.",
+        password: isPasswordValid
+          ? null
+          : "Password must be at least 6 characters long.",
+      },
+    };
+
+    return validationResult;
   };
 
   return (
@@ -53,7 +74,12 @@ export default function LoginPage() {
           </div>
         </form>
       </div>
-      <Footer buttonText="Login" path="/dashboard" />
+      <RegisterFooter
+        ref={footerRef}
+        buttonText="Login"
+        path="/dashboard"
+        validate={validateForm} // Pass validateForm function
+      />
     </div>
   );
 }
