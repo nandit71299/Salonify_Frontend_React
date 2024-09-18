@@ -1,40 +1,28 @@
-import React, { useState } from "react";
-import "./Dashboard.css";
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../../Context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
 import avatar from "../../assets/user-avatar.png";
-import hamburger from "../../assets/hamburger.png";
 import AnalyticsCard from "../../Components/AnalyticsCard";
 import SalesCard from "../../Components/SalesCard";
 import MostBookedCard from "../../Components/MostBookedCard";
 import DashboardFooter from "../../Components/DashboardFooter";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../Context/AuthContext";
-import { useCart } from "../../Context/CartContext";
 
 function Dashboard(props) {
   const [showBanner, setShowBanner] = useState(true);
+  const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate();
 
-  // Just a Practice Code //
-  const { cartCount, addToCart, removeFromCart } = useCart();
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]); // Dependency array includes isAuthenticated and navigate
 
-  const { isAuthenticated } = useAuth();
-
+  // If not authenticated, don't render anything
   if (!isAuthenticated) {
-    return (
-      <>
-        <div>Not Authenticated</div>
-        <div className="d-flex gap-2">
-          <button className="btn btn-success" onClick={addToCart}>
-            + Cart
-          </button>
-          <button className="btn btn-danger" onClick={removeFromCart}>
-            - Cart
-          </button>
-        </div>
-        <div className="mt-4 display-2">{cartCount}</div>
-      </>
-    );
+    return null;
   }
-  // Just a Practice Code //
+  console.log("HERE IN DASHBOARD");
 
   return (
     <div className="dashboard-page-container pt-3 pb-5">

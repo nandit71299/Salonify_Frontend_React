@@ -14,6 +14,7 @@ export default function RegisterBusinessDetails({
 }) {
   const [uploaderMessage, setUploaderMessage] = useState("+");
   const [imagePreview, setImagePreview] = useState(initialData.image || null);
+  const [imageFileName, setImageFileName] = useState(""); // State to store file name
   const [isSwitchOn, setIsSwitchOn] = useState(
     initialData.gstRegistered || false
   );
@@ -38,7 +39,13 @@ export default function RegisterBusinessDetails({
         const file = acceptedFiles[0];
         if (file instanceof File) {
           const reader = new FileReader();
-          reader.onload = () => setImagePreview(reader.result);
+          reader.onload = () => {
+            setImagePreview(reader.result);
+            setImageFileName(file.name); // Extract file name
+            // Save base64 string and file name to sessionStorage
+            sessionStorage.setItem("image", reader.result);
+            sessionStorage.setItem("imageFileName", file.name);
+          };
           reader.readAsDataURL(file);
         } else {
           setUploaderMessage("The selected file is not an image.");
@@ -135,6 +142,7 @@ export default function RegisterBusinessDetails({
     if (mode === "create") {
       const savedData = {
         image: sessionStorage.getItem("image"),
+        imageFileName: sessionStorage.getItem("imageFileName"), // Retrieve file name
         salonName: sessionStorage.getItem("salonName"),
         contactNumber: sessionStorage.getItem("salonContact"),
         email: sessionStorage.getItem("salonEmail"),
@@ -151,6 +159,7 @@ export default function RegisterBusinessDetails({
       console.log(savedData.salonType);
 
       if (savedData.image) setImagePreview(savedData.image);
+      setImageFileName(savedData.imageFileName || ""); // Set file name
       setFormData((prev) => ({
         salonName: savedData.salonName || prev.salonName,
         contactNumber: savedData.contactNumber || prev.contactNumber,
@@ -169,6 +178,7 @@ export default function RegisterBusinessDetails({
   useEffect(() => {
     if (mode === "create") {
       sessionStorage.setItem("image", imagePreview || "");
+      sessionStorage.setItem("imageFileName", imageFileName || ""); // Save file name
       sessionStorage.setItem("salonName", formData.salonName);
       sessionStorage.setItem("salonContact", formData.contactNumber);
       sessionStorage.setItem("salonEmail", formData.email);
@@ -181,8 +191,7 @@ export default function RegisterBusinessDetails({
       sessionStorage.setItem("legalName", formData.legalName);
       sessionStorage.setItem("gstType", formData.gstType);
     }
-  }, [formData, isSwitchOn, imagePreview, mode]);
-
+  }, [formData, isSwitchOn, imagePreview, imageFileName, mode]);
   return (
     <div className="register-business-details-page-container">
       <Header

@@ -1,44 +1,91 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Header from "../../Components/Header";
-import RegisterFooter from "../../Components/RegisterFooter";
 import OtpInput from "../../Components/OtpInput";
-import Loader from "../../Components/Loader"; // Import the Loader component
-import { mockApiCall } from "../../utils/mockApi"; // Import the mock API function
-import { useNotification } from "../../Context/NotificationContext"; // Import the notification hook
+import Loader from "../../Components/Loader";
+import { useNotification } from "../../Context/NotificationContext";
 import "./RegisterOtp.css";
+import { API_URLS } from "../../config/apiConfig";
 
 function RegisterOtp() {
-  const footerRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [otpDisabled, setOtpDisabled] = useState(false);
-  const { showNotification } = useNotification(); // Use the notification hook
+  const [otp, setOtp] = useState("");
+  const [resendButton, setResendButton] = useState(true);
+  const navigate = useNavigate();
+  const { showNotification } = useNotification();
+
+  const validateOtp = (otp) => {
+    if (otp.length === 0) {
+      return { isValid: false, errors: { otp: "Please enter OTP" } };
+    }
+    if (!/^\d+$/.test(otp)) {
+      return { isValid: false, errors: { otp: "OTP must be numeric" } };
+    }
+    if (otp.length !== 5) {
+      return { isValid: false, errors: { otp: "OTP must be 5 digits" } };
+    }
+    return { isValid: true, errors: { otp: null } };
+  };
 
   const handleOtpComplete = async (otp) => {
-    console.log("OTP is: ", otp);
-    setLoading(true);
-    setOtpDisabled(true);
+    setOtp(otp);
+    const validationResult = validateOtp(otp);
 
-    // Simulate API call
-    await mockApiCall();
+    if (validationResult.isValid) {
+      setLoading(true);
+      setOtpDisabled(true);
 
-    setLoading(false);
-    setOtpDisabled(false);
+      try {
+        const email = sessionStorage.getItem("personalEmail");
+        const response = await axios.post(`${API_URLS.verifyUser}`, {
+          email,
+          otp,
+        });
 
-    // Show notification
-    showNotification("OTP entered correctly!");
+        if (response.data.success) {
+          showNotification("OTP entered correctly! Please login.");
+          navigate("/login");
+        } else {
+          const errorMessage = response.data.message || "Invalid OTP";
+          setResendButton(true);
+          showNotification(errorMessage);
+        }
+      } catch (error) {
+        const errorMessage =
+          error.response?.data?.message ||
+          "An error occurred. Please try again.";
+        showNotification(errorMessage, "danger");
+      } finally {
+        setLoading(false);
+        setOtpDisabled(false);
+      }
+    } else {
+      showNotification(validationResult.errors.otp, "danger");
+    }
+  };
 
-    // Trigger the button click in RegisterFooter
-    if (footerRef.current) {
-      footerRef.current.clickButton();
+  const resendOtp = async () => {
+    const email = sessionStorage.getItem("personalEmail");
+    try {
+      const response = await axios.post(`${API_URLS.sendOtp}`, { email });
+      if (response.data.success) {
+        showNotification("OTP sent successfully.");
+        setResendButton(false); // Disable resend button until OTP is used
+      } else {
+        showNotification("Error sending OTP");
+      }
+    } catch (error) {
+      showNotification("An error occurred while sending OTP.", "danger");
     }
   };
 
   return (
     <div className="register-otp-page-container">
-      {loading && <Loader />} {/* Show loader when loading */}
+      {loading && <Loader />}
       <Header
         backButton={true}
-        // rightOption="Done"
         heading="Let's Get You Started"
         subText="Create a Salonify account to continue"
       />
@@ -49,8 +96,18 @@ function RegisterOtp() {
           onComplete={handleOtpComplete}
           disabled={otpDisabled}
         />
+        {resendButton && (
+          <button
+            className="btn border p-0 py-1 px-2 btn-dark mt-5 custom-font-small"
+            onClick={resendOtp}
+          >
+            Resend OTP
+          </button>
+        )}
       </div>
-      <RegisterFooter ref={footerRef} buttonText="Verify" path={"/login"} />
+      <p className="custom-text-gray text-center custom-font-small">
+        Please enter a 5-digit OTP
+      </p>
     </div>
   );
 }

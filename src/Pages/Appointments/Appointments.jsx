@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../../Context/AuthContext"; // Import useAuth
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Header from "../../Components/Header";
 import Filters from "../../Components/Filters";
 import AppointmentCard from "../../Components/AppointmentCard";
 import DashboardFooter from "../../Components/DashboardFooter";
 
 function Appointments(props) {
-  const [showFilters, setShowFilters] = useState(false); // Initially hide the filters
+  const [showFilters, setShowFilters] = useState(false);
+  const { isAuthenticated } = useAuth(); // Get authentication status
+  const navigate = useNavigate(); // Initialize navigate
+
+  useEffect(() => {
+    console.log("Checking authentication in Appointments:", isAuthenticated);
+    if (!isAuthenticated) {
+      console.log("HERE IN NOT AUTHENTICATED");
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
 
   useEffect(() => {
     if (showFilters) {
@@ -34,9 +46,11 @@ function Appointments(props) {
     e.stopPropagation();
   }
 
+  console.log("HERE IN APPOINTMENT");
+
   return (
     <div
-      className=" appointments-page-container pb-5"
+      className="appointments-page-container pb-5"
       style={{ position: "relative" }}
     >
       {showFilters && (

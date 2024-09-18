@@ -1,14 +1,15 @@
 import React, { useRef, useState } from "react";
-import "./OtpInput.css"; // Ensure this CSS file is created and linked
+import "./OtpInput.css";
+import { useNotification } from "../Context/NotificationContext";
 
-function OtpInput({ length, onComplete, disabled }) {
+function OtpInput({ length, onComplete, disabled, validateOtp }) {
+  const { showNotification } = useNotification();
   const [otp, setOtp] = useState(Array(length).fill(""));
   const inputRefs = useRef([]);
 
   const handleOtpInputChange = (e, index) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
-      // Ensure value is a number or empty
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
@@ -17,7 +18,15 @@ function OtpInput({ length, onComplete, disabled }) {
         inputRefs.current[index + 1].focus();
       }
       if (newOtp.every((digit) => digit !== "")) {
-        onComplete(newOtp.join(""));
+        const otpString = newOtp.join("");
+        const validationResult = validateOtp
+          ? validateOtp(otpString)
+          : { isValid: true, errors: { otp: null } };
+        if (validationResult.isValid) {
+          onComplete(otpString);
+        } else {
+          showNotification(validationResult.errors.otp, "danger");
+        }
       }
     }
   };
@@ -42,8 +51,8 @@ function OtpInput({ length, onComplete, disabled }) {
           maxLength={1}
           onChange={(e) => handleOtpInputChange(e, index)}
           disabled={disabled}
-          pattern="\d*" // Enforce numeric input (HTML5 pattern attribute)
-          inputMode="numeric" // Improve numeric keyboard on mobile
+          pattern="\d*"
+          inputMode="numeric"
         />
       ))}
     </div>

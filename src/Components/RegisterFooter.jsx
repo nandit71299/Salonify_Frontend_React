@@ -1,17 +1,13 @@
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterFooter.css";
-import { navigationService } from "../Services/navigationService";
-import { useNotification } from "../Context/NotificationContext"; // Import the notification hook
+import { useNotification } from "../Context/NotificationContext";
 
 function RegisterFooter(props, ref) {
   const { showNotification } = useNotification();
-
-  const { goForward } = navigationService();
   const buttonRef = useRef(null);
-  const navigate = useNavigate(); // useNavigate from react-router-dom
+  const navigate = useNavigate();
 
-  // Expose methods to the parent component via ref
   useImperativeHandle(ref, () => ({
     clickButton: () => {
       if (buttonRef.current) {
@@ -20,21 +16,24 @@ function RegisterFooter(props, ref) {
     },
   }));
 
-  const handleClick = () => {
-    const validationResult = props.validate(); // Call the validate function passed as prop
+  const handleClick = async () => {
+    const validationResult = props.validate();
 
     if (validationResult.isValid) {
-      navigate(props.path); // Navigate to the specified path
-      props.notificationMessage &&
-        showNotification(validationResult.notificationMessage);
+      if (props.onSubmit) {
+        const success = await props.onSubmit(); // Call the external submit function
+        if (success) {
+          navigate(props.path); // Navigate if submission is successful
+        }
+      } else {
+        navigate(props.path); // Navigate if no onSubmit function is provided
+      }
     } else {
-      // Log each error message to the console
-      const errors = Object.values(validationResult.errors).filter(Boolean); // Filter out null or undefined errors
+      const errors = Object.values(validationResult.errors).filter(Boolean);
       errors.forEach((message, index) => {
-        console.log(message);
         setTimeout(() => {
-          showNotification(message, "danger"); // Replace with actual notification display if needed
-        }, index * 2000); // Delay each message by 1000ms (1 second) times the index
+          showNotification(message, "danger");
+        }, index * 2000);
       });
     }
   };
@@ -43,7 +42,7 @@ function RegisterFooter(props, ref) {
     <div className="register-footer-container container">
       <button
         ref={buttonRef}
-        onClick={props.validate ? handleClick : () => navigate(props.path)} // Use the handleClick function
+        onClick={props.validate ? handleClick : () => navigate(props.path)}
         className="btn mt-3 mb-0 btn-dark custom-font-small rounded-5 px-5"
       >
         {props.buttonText}

@@ -3,13 +3,20 @@ import Header from "../../Components/Header";
 import "./LoginPage.css";
 import CustomTextInput from "../../Components/CustomTextInput";
 import RegisterFooter from "../../Components/RegisterFooter";
+import axios from "axios";
+import { API_URLS } from "../../config/apiConfig";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNotification } from "../../Context/NotificationContext";
+import { useAuth } from "../../Context/AuthContext"; // Import useAuth
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const footerRef = useRef(null); // Create a ref for RegisterFooter
+  const footerRef = useRef(null);
+  const navigate = useNavigate(); // Initialize useNavigate
+  const { showNotification } = useNotification(); // Use Notification Context
+  const { login } = useAuth(); // Get the login function from AuthContext
 
-  // Handle input changes
   const handleChange = (e) => {
     const { id, value } = e.target;
     if (id === "email") {
@@ -19,12 +26,10 @@ export default function LoginPage() {
     }
   };
 
-  // Validate the form
   const validateForm = () => {
     const isEmailValid = email.includes("@");
     const isPasswordValid = password.length >= 6;
 
-    // Create an object to hold the validation result and messages
     const validationResult = {
       isValid: isEmailValid && isPasswordValid,
       errors: {
@@ -38,6 +43,57 @@ export default function LoginPage() {
     };
 
     return validationResult;
+  };
+
+  const handleSubmit = async () => {
+    const validationResult = validateForm();
+
+    if (validationResult.isValid) {
+      try {
+        const response = await axios.post(`${API_URLS.salonLogin}`, {
+          email,
+          password,
+        });
+
+        if (response.data.success) {
+          // Handle successful login
+          showNotification(response.data.message || "Successfully logged in");
+
+          // Use the login method from AuthContext
+          login(response.data.userData, response.data.token); // Assuming userData is returned
+
+          return true;
+        } else {
+          // Handle failed login
+          showNotification(
+            response.data.message || "Invalid credentials",
+            "danger"
+          );
+          return false;
+        }
+      } catch (error) {
+        // Handle different types of errors
+        if (error.response) {
+          const errorMessage =
+            error.response.data.message ||
+            "An error occurred. Please try again.";
+          showNotification(errorMessage, "danger");
+        } else if (error.request) {
+          showNotification(
+            "No response received from server. Please try again.",
+            "danger"
+          );
+        } else {
+          showNotification(
+            "Error in setting up the request. Please try again.",
+            "danger"
+          );
+        }
+        return false;
+      }
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -63,7 +119,7 @@ export default function LoginPage() {
                 label="Password"
                 required
                 id="password"
-                type="password" // Add type="password" for password input
+                type="password"
                 value={password}
                 onChange={handleChange}
               />
@@ -78,7 +134,8 @@ export default function LoginPage() {
         ref={footerRef}
         buttonText="Login"
         path="/dashboard"
-        validate={validateForm} // Pass validateForm function
+        validate={validateForm}
+        onSubmit={handleSubmit}
       />
     </div>
   );
